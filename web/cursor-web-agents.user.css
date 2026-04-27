@@ -1,0 +1,92 @@
+/* ==UserStyle==
+@name           OneA1 – Cursor web (navy, lime, coral)
+@namespace      JeanCamposLabs
+@version        1.0.1
+@description    Unofficial: maps the same palette as your VS Code/Cursor editor (≈#0a1628, lime, coral) onto the public Cursor *website* (e.g. Agents, dashboard on cursor.com). The web app has no “import from desktop” feature — you load this in Stylus. Breaks on site redesigns; tweak selectors in DevTools if needed.
+@author         jeancamposlabs
+@license        MIT
+@preprocessor  default
+==/UserStyle== */
+
+/*
+  Palette (from your editor theme):
+  - page bg:        #0a1628
+  - editor text:    #a8e8b8
+  - lime:           #5ce65c / #7ef47e
+  - coral / accent: #ff6b6b, #e85d5d, #ff5c7a, #ff7a8c
+  - side chrome:     #070f1c, #050c16
+  - tabs / panels:  #0f2038, #081422, #070f1c
+*/
+
+@-moz-document regexp("https?://(www\\.)?cursor\\.com/.*"),
+  regexp("https?://[a-z0-9.-]+\\.cursor\\.com/.*") {
+
+  :root {
+    /* Common design-token names (shadcn / similar). Adjust in DevTools if the app uses different variable names. */
+    --background: 215 50% 10%;
+    --foreground: 132 50% 78%;
+    --card: 214 50% 8%;
+    --card-foreground: 132 45% 78%;
+    --popover: 214 50% 8%;
+    --popover-foreground: 132 45% 78%;
+    --primary: 100 64% 58%;
+    --primary-foreground: 215 50% 10%;
+    --secondary: 214 40% 15%;
+    --secondary-foreground: 100 50% 70%;
+    --muted: 214 30% 18%;
+    --muted-foreground: 100 20% 55%;
+    --accent: 0 100% 71%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 60%;
+    --border: 350 50% 45% / 0.25;
+    --input: 350 30% 30% / 0.25;
+    --ring: 100 64% 58%;
+  }
+
+  html,
+  body {
+    background-color: #0a1628 !important;
+    color: #a8e8b8 !important;
+    font-family: ui-sans-serif, -apple-system, "Menlo", "Monaco", "Courier New", monospace, system-ui, sans-serif !important;
+  }
+
+  a,
+  a:visited {
+    color: #5ce65c !important;
+  }
+  a:hover {
+    color: #7ef47e !important;
+  }
+
+  /* Safe fallbacks: large surfaces (may need narrowing if it over-colors hero assets) */
+  [class*="bg-background"],
+  [class*="bg-slate-"],
+  [class*="bg-zinc-"] {
+    --tw-bg-opacity: 1;
+  }
+
+  /* Inputs / composition areas */
+  input,
+  textarea,
+  [role="textbox"],
+  [data-slot="input"] {
+    background: #070f1c !important;
+    color: #a8e8b8 !important;
+    border: 1px solid #ff4d6a33 !important;
+  }
+
+  /* Scrollbars (WebKit) */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #1a3d6c66;
+    border-radius: 5px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #0a1628;
+  }
+}
+
+/* If the logged-in app uses a different host (e.g. app. or a preview URL), add another block with the right @-moz-document URL pattern. */
