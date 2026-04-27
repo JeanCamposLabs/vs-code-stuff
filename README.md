@@ -4,76 +4,77 @@ All the stuff that I want to keep here in case I change computer. Nothing major 
 
 ---
 
-## What is in this repo
+Repository: [github.com/JeanCamposLabs/vs-code-stuff](https://github.com/JeanCamposLabs/vs-code-stuff)
+
+Portable **Visual Studio Code** look: dark navy editor (`#0a1628`), lime accents (`#5ce65c` / `#7ef47e`), coral highlights, top activity bar, Menlo/Monaco, token rules—plus an **optional** Stylus layer for the **Cursor website** (Agents) in the browser.
+
+## What is included
 
 | Path | Purpose |
 |------|---------|
-| `vscode/settings.json` | Portable **Visual Studio Code** look: layout, fonts, `workbench.colorCustomizations`, `editor.tokenColorCustomizations`, icon theme (`vs-seti`). |
-| `vscode/extensions.txt` | Optional extension IDs to install on a new machine. |
-| `web/cursor-web-agents.user.css` | **Unofficial** browser **Stylus** style to get a *similar* navy / lime / coral look on the **Cursor website** (Agents, marketing pages) — *not* the same as the desktop app (there is no official “sync theme to web” yet). |
+| `vscode/settings.json` | Window layout, fonts, `workbench.colorCustomizations`, `editor.tokenColorCustomizations`, icon theme (`vs-seti`), etc. |
+| `vscode/extensions.txt` | Optional extension IDs. Custom CSS / Fix Checksums are omitted for a clean install. |
+| `web/cursor-web-agents.user.css` | **Unofficial** browser style (Stylus) for a *similar* palette on `cursor.com` — *not* an official Cursor feature. |
 
-The desktop look is 100% standard `settings.json` (no custom CSS, no pentagram in this bundle).
+The desktop look is **100% standard** `settings.json` (no patched app files in this bundle).
 
 ---
 
-## VS Code (desktop) — new Mac / Windows / Linux
+## Apply on a new Mac (VS Code)
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
-
-2. Back up your current user settings (optional).
-
-3. **macOS**
+2. **Back up** your current `settings.json` if needed.
+3. Clone this repo, then:
 
    ```bash
-   cp vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+   REPO="$HOME/path/to/vs-code-stuff"
+   cp "$REPO/vscode/settings.json" \
+      ~/Library/Application\ Support/Code/User/settings.json
    ```
 
-4. **Windows** — `%APPDATA%\Code\User\settings.json`  
-5. **Linux** — `~/.config/Code/User/settings.json`
+4. Restart VS Code (**Cmd+Q**, reopen).
 
-6. Optional extensions:  
-   `xargs -L1 code --install-extension < vscode/extensions.txt`  
-   (or use the `code` binary path for your OS.)
+5. **Extensions** (optional):
 
-7. Restart VS Code.
+   ```bash
+   xargs -L1 code --install-extension < "$REPO/vscode/extensions.txt"
+   ```
+
+## Windows / Linux
+
+- **Windows:** `%APPDATA%\Code\User\settings.json`
+- **Linux:** `~/.config/Code/User/settings.json`
+
+Copy `vscode/settings.json` there.
+
+## Cursor (desktop)
+
+Use the same file at:
+
+`~/Library/Application Support/Cursor/User/settings.json`
+
+Cursor’s default themes are named **“Cursor Dark”**, **“Cursor Dark Midnight”**, etc. Theme-scoped `workbench.colorCustomizations` may be required; copy from a machine that already looks right, then restart Cursor.
 
 ---
 
-## Cursor (desktop) — same palette
+## Cursor web (Agents) — browser only
 
-Use the same `vscode/settings.json` with:
+The **website** is a different product: there is **no** official “import my editor theme” API. The workaround is a **Stylus** userstyle:
 
-`~/Library/Application Support/Cursor/User/settings.json` (macOS).
+1. Install [Stylus](https://add0n.com/stylus.html).
+2. Import `web/cursor-web-agents.user.css` (or paste its contents into a new style).
+3. Enable it for `https://cursor.com/*` and `https://*.cursor.com/*` (add other hosts you use by editing the `@-moz-document` lines).
+4. Expect to tweak selectors after Cursor ships UI changes; use DevTools if something stays wrong.
 
-Cursor’s bundled themes (e.g. “Cursor Dark”) may need **theme-scoped** `workbench.colorCustomizations` — your local file may already be set up that way. Restart Cursor after copy.
-
----
-
-## Cursor web (Agents) — *similar* colors in the **browser**
-
-The **web** product ([cursor.com](https://cursor.com) and subdomains) is a **separate** surface. There is no supported way to “log in and pull my editor theme” from an API. The practical workaround is a **Stylus** user style:
-
-1. Install the [Stylus](https://add0n.com/stylus.html) extension (Chrome / Firefox / Edge).
-
-2. Open Stylus → **Write new style** → **Import** (or paste) the file  
-   `web/cursor-web-agents.user.css`.
-
-3. Save, enable, and set it to run on:
-   - `https://cursor.com/*`
-   - `https://*.cursor.com/*`  
-   (Add other hosts you use, e.g. a preview or `*.cursor.sh`, by duplicating the top `@-moz-document` block in that file.)
-
-4. **Expect imperfection:** the site will change. If something is still white or wrong, use **DevTools** → pick a node → add or tighten selectors in the user CSS.
-
-5. This does **not** change Cursor’s servers—only *your* browser’s rendering.
+This only affects **your** browser, not other users or Cursor’s servers.
 
 ---
 
 ## For another agent
 
-- **Desktop theme source of truth:** `vscode/settings.json`.
-- **Web overlay:** `web/cursor-web-agents.user.css` + Stylus.
-- Re-copy `settings.json` from your machine and commit when the look drifts.
+- **Desktop:** `vscode/settings.json` is the source of truth.
+- **Web:** `web/cursor-web-agents.user.css` + Stylus.
+- Re-copy and commit when the look drifts.
 
 ## License
 
