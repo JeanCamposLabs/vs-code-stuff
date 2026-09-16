@@ -15,6 +15,7 @@ Portable **Visual Studio Code** look: dark navy editor (`#0a1628`), lime accents
 | `vscode/settings.json` | Window layout, fonts, `workbench.colorCustomizations`, `editor.tokenColorCustomizations`, icon theme (`vs-seti`), etc. |
 | `vscode/extensions.txt` | Optional extension IDs. Custom CSS / Fix Checksums are omitted for a clean install. |
 | `web/cursor-web-agents.user.css` | **Unofficial** browser style (Stylus) for a *similar* palette on `cursor.com` — *not* an official Cursor feature. |
+| `opencode/scaleos-navy.json` | The same palette as an **OpenCode** theme, for the terminal TUI. |
 
 The desktop look is **100% standard** `settings.json` (no patched app files in this bundle).
 
@@ -74,6 +75,8 @@ This only affects **your** browser, not other users or Cursor’s servers.
 
 - **Desktop:** `vscode/settings.json` is the source of truth.
 - **Web:** `web/cursor-web-agents.user.css` + Stylus.
+- **OpenCode:** `opencode/scaleos-navy.json`, the TUI only; re-derive it from the VS Code
+  palette rather than inventing new colors.
 - Re-copy and commit when the look drifts.
 
 ## License
